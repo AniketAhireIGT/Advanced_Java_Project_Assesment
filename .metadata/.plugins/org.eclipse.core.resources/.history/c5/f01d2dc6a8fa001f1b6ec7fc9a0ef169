@@ -1,0 +1,36 @@
+package com.flightreservation.bookingservice.bookingService;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.flightreservation.bookingservice.bookingRepo.BookingRepository;
+import com.flightreservation.bookingservice.bookingentity.BookingEntity;
+
+@Service
+public class BookingService
+{
+	@Autowired
+    private BookingRepository bookingRepository;
+
+
+    public List<BookingEntity> getAllBookings() {
+        return bookingRepository.findAll();
+    }
+
+    public Optional<BookingEntity> getBookingById(Long id) {
+        return bookingRepository.findById(id);
+    }
+
+    public List<BookingEntity> getUserBookings(Long userId) {
+        return bookingRepository.findByUserId(userId);
+    }
+
+    public BookingEntity createBooking(BookingEntity booking) {
+        booking.setBookingDate(LocalDateTime.now());
+        return bookingRepository.save(booking);
+    }
+}

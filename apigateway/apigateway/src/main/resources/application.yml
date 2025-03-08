@@ -1,0 +1,22 @@
+server:
+  port: 8080  # API Gateway will run on port 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service  # Unique ID for User Service route
+          uri: http://localhost:8081  # The User Service URL
+          predicates:
+            - Path=/users/**  # This route will handle any path starting with '/users/'
+
+        - id: flight-service  # Unique ID for Flight Service route
+          uri: http://localhost:8082  # The Flight Service URL
+          predicates:
+            - Path=/flights/**  # This route will handle any path starting with '/flights/'
+
+        - id: booking-service  # Unique ID for Booking Service route
+          uri: http://localhost:8083  # The Booking Service URL
+          predicates:
+            - Path=/bookings/**  # This route will handle any path starting with '/bookings/'
+

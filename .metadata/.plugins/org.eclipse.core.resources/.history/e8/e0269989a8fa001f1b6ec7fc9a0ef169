@@ -1,0 +1,5 @@
+package com.flightreservation.bookingservice.feignClients;
+
+public class FlightClient {
+
+}
